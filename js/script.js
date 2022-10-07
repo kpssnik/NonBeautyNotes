@@ -1,4 +1,7 @@
+// card container
 const cardsBlock = document.querySelector('.flexbox');
+
+// left top button adding new card
 const addCardButton = document.querySelector('.add-card-btn');
 
 // new card after clicking ADD

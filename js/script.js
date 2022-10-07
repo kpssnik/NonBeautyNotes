@@ -16,7 +16,7 @@ function getNewCard(title, content, styleClass) {
             <h3>${title}</h3>
             <div>
                 <button class="btn edit-card-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn edit-card-btn"><i class="fa-sharp fa-solid fa-trash"></i></button>
+                <button class="btn delete-card-btn"><i class="fa-sharp fa-solid fa-trash"></i></button>
             </div>
         </div>
         <div class="card-main">
@@ -33,6 +33,12 @@ function getNewCard(title, content, styleClass) {
     `;
 
     // TODO edit delete  event listeners //////////////////////////////////////////////////////////////////////////////////////////////////
+    const deleteBtn = newCard.querySelector('.delete-card-btn');
+    const editBtn = newCard.querySelector('.edit-card-btn');
+
+    deleteBtn.addEventListener('click', () => {
+        newCard.remove();
+    });
 
     return newCard;
 }

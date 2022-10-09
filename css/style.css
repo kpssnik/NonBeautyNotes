@@ -17,6 +17,7 @@ body {
     height: 60px; */
     padding: 0 20px;
     background-color: #4f4f4f;
+    overflow-y: auto;
 }
 
 .navbar-list {
@@ -54,6 +55,7 @@ body {
 .flexbox {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 

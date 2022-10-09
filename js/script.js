@@ -109,6 +109,8 @@ function updateCardDesing(card, style) {
     card.className = '';
     card.classList.add('card', style);
     card.setAttribute('card-style', style);
+
+    updateLocalStorage();
 }
 
 
@@ -118,4 +120,5 @@ addCardButton.addEventListener('click', () => {
     updateLocalStorage();
 });
 
+renderCardsFromStorage();
 

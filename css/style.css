@@ -114,21 +114,21 @@ body {
 
 /*********************************** CARD STYLES ***********************************/
 
-.red-card-style {
+.card-red {
     background-color: red;
     color: white;
 }
 
-.yellow-card-style {
+.card-yellow {
     background-color: gold;
 }
 
-.green-card-style {
+.card-green {
     background-color: green;
     color: white;
 }
 
-.default-card-style {
+.card-default {
     background-color: bisque;
     color: black
 }

@@ -20,6 +20,7 @@ window.cards = {
         cardElement.innerHTML = `
             <div class="card-header">
                 <h3>${title}</h3>
+                <input class="title-input hidden">
                 <div>
                     <button class="btn edit-card-btn"><i class="fa-solid fa-pen-to-square"></i></button>
                     <button class="btn delete-card-btn"><i class="fa-sharp fa-solid fa-trash"></i></button>
@@ -27,6 +28,7 @@ window.cards = {
             </div>
             <div class="card-main">
                 <p class="card-main-content">${content}</p>
+                <textarea class="content-input hidden"></textarea>
             </div>
             <div class="card-footer">
                 <button class="style-btn card-red" give-style="red">RED</button>
@@ -38,6 +40,15 @@ window.cards = {
 
         //////////////////////////////////
 
+        // title text and input in edit mode
+        const titleInput = cardElement.querySelector('.title-input');
+        const titleElement = cardElement.querySelector('.card-header h3');
+
+        // content text and textarea in edit mode
+        const contentElement = cardElement.querySelector('.card-main-content');
+        const contentInput = cardElement.querySelector('.content-input');
+
+        // buttons
         const deleteButton = cardElement.querySelector('.delete-card-btn');
         const editButton = cardElement.querySelector('.edit-card-btn');
         const styleButtons = cardElement.querySelectorAll('.style-btn');
@@ -47,10 +58,31 @@ window.cards = {
             cardElement.remove();
             window.storage.removeCard(id);
         });
+
         // summon edit input
         editButton.addEventListener('click', () => {
-            // ...
+            titleInput.classList.toggle('hidden');
+            titleElement.classList.toggle('hidden');
+
+            contentInput.classList.toggle('hidden');
+            contentElement.classList.toggle('hidden');
+
+            if (!titleInput.classList.contains('hidden')) {
+                titleInput.value = titleElement.innerText;
+                contentInput.innerText = contentElement.innerHTML;
+            }
+            else {
+                window.storage.setCard(cardElement);
+            }
         });
+
+        titleInput.addEventListener('input', () => {
+            titleElement.innerText = titleInput.value;
+        });
+        contentInput.addEventListener('input', () => {
+            contentElement.innerText = contentInput.value;
+        });
+
         // change card style
         styleButtons.forEach(sb => {
             sb.addEventListener('click', event => {
@@ -58,7 +90,7 @@ window.cards = {
                 const card = sb.parentNode.parentNode;
                 const style = sb.getAttribute('give-style');
 
-                cards.updateCardStyle(card, style);          
+                cards.updateCardStyle(card, style);
             });
         });
 
@@ -86,7 +118,7 @@ window.cards = {
 
         return {
             title: titleElement.innerText,
-            content: contentElement.innerText,
+            content: contentElement.innerHTML,
             style: cardStyle,
             id: cardId
         };
